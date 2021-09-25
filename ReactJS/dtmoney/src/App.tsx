@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 import { TransactionTable } from "./components/TransactionsTable";
 import { Dashboard } from "./components/Dashboard";
-import { NewTransactionModal } from "./components/NewTransactionModal/inde.tsx";
+import { NewTransactionModal } from "./components/NewTransactionModal";
 
 import Modal from 'react-modal'
 
