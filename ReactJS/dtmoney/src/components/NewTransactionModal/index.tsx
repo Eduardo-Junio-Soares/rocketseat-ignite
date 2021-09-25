@@ -1,36 +1,34 @@
 import Modal from "react-modal"
-import { FormEvent, useState } from "react"
+import { FormEvent, useState, useContext } from "react"
+import { TransactionContext } from "../../TransactionsContext"
 
 import closeimg from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 
 import { Container, TransactionTypeContainer, RadioBox } from "./styles"
-import { api } from "../../services/api"
-
-
 
 interface NewTransactionModalProps {
     isOpen: boolean
     onRequestClose: () => void
 }
 export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModalProps) {
+    const { createTransaction } = useContext(TransactionContext)
+
     const [type, setType] = useState('deposit')
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
-    const [value, setValue] = useState(0)
+    const [amount, setAmount] = useState(0)
 
     function handleCreateNewtransaction(e: FormEvent) {
         e.preventDefault()
 
-        const data = {
+        createTransaction({
             title,
-            value,
+            amount,
             category,
             type,
-        }
-
-        api.post('/transactions', data)
+        })
     }
 
     return (
@@ -62,8 +60,8 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
              <input
                 type='number'
                 placeholder='Valor'
-                value={value}
-                onChange={(e) => setValue(Number(e.target.value))}
+                value={amount}
+                onChange={(e) => setAmount(Number(e.target.value))}
              />
 
             <TransactionTypeContainer>
