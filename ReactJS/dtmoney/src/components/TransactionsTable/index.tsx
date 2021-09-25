@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { Container } from "./styles";
 import { TransactionContext } from "../../TransactionsContext";
+import { formatToMonetaryValue } from "../../utils/formatToMonetaryValue";
 
 
 export function TransactionTable() {
@@ -23,10 +24,7 @@ export function TransactionTable() {
                         <tr key={transaction.id}>
                             <td >{transaction.title}</td>
                             <td className={transaction.type}>
-                                { new Intl.NumberFormat('pt-br', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                }).format(transaction.amount)}
+                                {formatToMonetaryValue(transaction.amount)}
                             </td>
                             <td>{transaction.category}</td>
                             <td>
