@@ -1,10 +1,12 @@
-import { Container } from "./styles";
 import { useTransactions } from "../../hooks/useTransactions";
 import { formatToMonetaryValue } from "../../utils/formatToMonetaryValue";
 
+import { FiTrash2 } from 'react-icons/fi'
+
+import { Container } from "./styles";
 
 export function TransactionTable() {
-    const { transactions }  = useTransactions()
+    const { transactions, deleteTransaction }  = useTransactions()
 
     return (
         <Container>
@@ -29,6 +31,9 @@ export function TransactionTable() {
                                 { new Intl.DateTimeFormat('pt-br').format(
                                     new Date(transaction.createdAt)
                                 )}
+                            </td>
+                            <td>
+                                <button onClick={() => deleteTransaction(Number(transaction.id))}><FiTrash2/></button>
                             </td>
                         </tr>
                         ))
