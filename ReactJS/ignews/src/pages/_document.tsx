@@ -9,9 +9,9 @@ export default class MyDocument extends Document {
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
           rel="stylesheet"
         />
-        <Head>
-          <title>ig.news</title>
-        </Head>
+        <link rel="shorcut icon" href="/favicon.png" type="image/png" />
+
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
